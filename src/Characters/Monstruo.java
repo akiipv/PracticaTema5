@@ -51,39 +51,42 @@ public class Monstruo extends Personaje {
 
     public void statsMonstruo(int pctPV, int pctATQ, int pctARM, int pctRES, int pctVEL) {
         if (prob(pctPV))
-            setPv(getPv() + cantidad());
+            setPv(getPv() + cantidad("pv"));
 
         if (prob(pctATQ))
-            setAtq(getAtq() + cantidad());
+            setAtq(getAtq() + cantidad("atq"));
 
         if (prob(pctARM))
-            setArm(getArm() + cantidad());
+            setArm(getArm() + cantidad("arm"));
 
         if (prob(pctRES))
-            setRes(getRes() + cantidad());
+            setRes(getRes() + cantidad("res"));
 
         if (prob(pctVEL))
-            setVel(getVel() + cantidad());
+            setVel(getVel() + cantidad("vel"));
     }
 
     /**todo cambiar despues pq esta puto mal pero me da pereza ponerlo bien ahora*/
 
-    public int cantidad() {
-        int cantidad = 0;
+    public int cantidad(String stat) {
+        int cantidad = 1;
         Random r = new Random();
 
         switch (raza.toLowerCase()) {
             case "bestia":
-                cantidad = 2;
+                if (stat.equalsIgnoreCase("atq") || stat.equalsIgnoreCase("vel"))
+                    cantidad = 2;
                 break;
             case "no-muerto":
-                cantidad = 4;
+                if (stat.equalsIgnoreCase("res"))
+                    cantidad = 4;
                 break;
             case "gigante":
-                cantidad = r.nextInt(2, 4);
+                if (stat.equalsIgnoreCase("pv"))
+                    cantidad = r.nextInt(2, 4);
                 break;
             default:
-                cantidad = 1;
+                System.err.println("pene");
         }
 
         return cantidad;

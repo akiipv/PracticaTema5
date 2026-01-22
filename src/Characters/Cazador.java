@@ -98,7 +98,6 @@ public class Cazador extends Personaje {
             else this.raza = "";
         }
 
-
         @Override
         public String toString()
         {

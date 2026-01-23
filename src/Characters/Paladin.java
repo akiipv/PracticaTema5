@@ -1,6 +1,5 @@
 package Characters;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Paladin extends Creyente{
@@ -46,10 +45,7 @@ public class Paladin extends Creyente{
 
         System.out.println(coquetoP());
 
-        System.out.println("¿Qué tipo de conjuro quiere hacer? ⋆˙⟡ — " +
-                "\n\t1. Imbuir arma" +
-                "\n\t2. Baluarte de fe" +
-                "\n\t3. Fogonazo sagrado");
+        menusito("¿Qué tipo de conjuro quiere hacer?", new String[]{"Imbuir arma", "Baluarte de fe", "Fogonazo sagrado"}, 2);
         opcion = scan.nextInt();
 
         switch (opcion){
@@ -70,9 +66,9 @@ public class Paladin extends Creyente{
     }
 
     @Override
-    public void accEspesial(){
-        System.out.println("Acción especial: Plegaria..");
-        // plegaria();
+    public void accEspesial(Personaje enemigo){
+        printPerezita("\uD835\uDC00\uD835\uDC1C\uD835\uDC1C\uD835\uDC22ó\uD835\uDC27 \uD835\uDC1E\uD835\uDC2C\uD835\uDC29\uD835\uDC1E\uD835\uDC1C\uD835\uDC22\uD835\uDC1A\uD835\uDC25: \uD835\uDC0F\uD835\uDC25\uD835\uDC1E\uD835\uDC20\uD835\uDC1A\uD835\uDC2B\uD835\uDC22\uD835\uDC1A..");
+        plegaria(enemigo);
     }
 
     @Override
@@ -88,25 +84,13 @@ public class Paladin extends Creyente{
     }
 
     public String coquetoP(){
-        return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⣿⡷⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣝⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⢿⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣾⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⣠⣾⣦⢤⣤⡠⣤⣠⣴⣿⡿⣿⣻⣧⣤⣠⡠⣤⣄⣴⣷⣄\n" +
-                "⠙⢿⠟⠙⠙⠛⠛⠙⠛⣿⣷⣿⣿⡟⠛⠙⠛⠛⠋⠻⡿⠋\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣾⣿⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⣳⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⣷⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣟⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⡷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⣿⡷⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
+        return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣶⡀\n" +
+                "⠀⠀⢠⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣾⠏⠘⠿⣦⣤\n" +
+                "⠀⠀⣾⠉⠻⢶⠶⠛⢻⡇⠀⠀⠀⠘⢻⡦⠀⠀⢰⡾⠃\n" +
+                "⢀⣤⠿⠀⠀⠀⠀⢠⡟⠁⠀⠀⠀⠀⠸⠷⠿⠿⣾⣷\n" +
+                "⢿⣥⣀⠀⠀⠀⠀⠀⢻⡆\n" +
+                "⠀⠈⠉⣿⣀⣾⠟⠛⠋⠁    \n" +
+                "⠀⠀⠀⠘⠛⠁\n";
     }
 
 }

@@ -24,17 +24,19 @@ public class Guerrero extends Personaje {
     }
 
     public void modificarFuria(){
-        System.out.println(coquetoG());
-        System.out.println("\nLa furia ha sido modificada a: " + isFuria());
 
         if (isFuria()){
             this.furia = false;
         } else this.furia = true;
+
+        if (isFuria())
+            printPerezita("\uD835\uDC6D\uD835\uDC96\uD835\uDC93\uD835\uDC8A\uD835\uDC82 \uD835\uDC82\uD835\uDC84\uD835\uDC95\uD835\uDC8A\uD835\uDC97\uD835\uDC82\uD835\uDC85\uD835\uDC82..");
+        else printPerezita("\uD835\uDC6D\uD835\uDC96\uD835\uDC93\uD835\uDC8A\uD835\uDC82 \uD835\uDC85\uD835\uDC86\uD835\uDC94\uD835\uDC82\uD835\uDC84\uD835\uDC95\uD835\uDC8A\uD835\uDC97\uD835\uDC82\uD835\uDC85\uD835\uDC82..");
+        System.out.println(coquetoG());
     }
 
     @Override
-    public void accEspesial(){
-        System.out.println("Acción especial: Furia");
+    public void accEspesial(Personaje enemigo){
         modificarFuria();
     }
 
@@ -105,17 +107,21 @@ public class Guerrero extends Personaje {
     }
 
     public String coquetoG(){
-        return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠐⡀⠀⠀⠀⠀⠀⢺⠀⡄⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠈⡀⣴⠀⠀⠀⠀⠀⠀⡔\n" +
-                "⠀⠀⠀⠈⢦⣀⠀⠀⠀⠘⣷⡇⠀⠀⠀⠀⢦⡈⠑⠢⣄⠀⠀⠀⠀⠀⠀⠀⢀⡤⠚⠉⡠⠂⠀⠀⠀⠀⣷⡏⠀⠀⠀⢀⡤⠊⠀\n" +
-                "⠀⠀⠀⠀⠀⠈⡟⠒⠢⠀⢳⠱⡀⠀⠀⠀⠀⠙⣦⣄⣈⡷⢄⠀⠀⠀⣠⡶⣏⣀⣴⡟⡀⠀⠀⠀⠀⡜⡹⠁⡠⠒⢻⡋⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠁⠙⠻⢤⡀⠁⠀⣳⡈⢆⠀⠀⠀⠈⢻⡟⠁⠀⠀⠑⠀⠐⠁⠀⠀⠹⣿⠋⠀⠀⠀⠠⠊⣴⠁⠀⠁⣠⠾⠛⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠻⢿⣄⠀⠀⠀⠑⣾⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⠖⠁⠀⠀⢀⣾⠟⠋⠉⠁⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣦⣀⠀⣦⡈⢻⡙⢄⠀⠀⠀⠀⠀⣠⠞⡸⠋⣠⡆⢀⣴⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠠⠤⠐⢛⣋⣉⣳⠎⢽⠗⠣⣌⢷⢆⠀⣠⢾⢃⡤⠓⣿⠇⢾⣋⣉⣛⠓⠠⠤⠐⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠈⠦⣀⠀⠑⢆⠙⢁⠞⠁⢀⡴⠃⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠂⠀⠳⠁⠀⠂⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀             ";
+        return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡧⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⢀⠀⠀⠀⢠⠀⡀⣷⠀⠀⡌⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠁⠠⣀⢼⣄⡂⣿⢸⢰⠄⡠⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠠⠀⢀⣺⢋⣠⣌⢋⣭⡍⢻⡂⠠⠄⠀⠀⠀⠀⠀\n" +
+                "⠰⣶⠷⠶⠶⠶⠆⣰⣾⠸⣿⣷⣿⢿⡿⢸⣿⠿⠷⠶⠶⠶⠶⠆\n" +
+                "⠀⠀⠀⠀⠀⠀⢀⡠⢞⢢⡑⢑⣝⡟⢁⡾⡫⢌⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠠⠀⠈⠀⠀⡀⠊⣱⢌⠋⢴⡍⠽⠢⠀⠈⠂⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠄⠀⠀⡐⠁⠼⣿⠃⠐⠄⠀⠈⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠁⠌⠀⠀⠀⣿⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n";
     }
 
 }

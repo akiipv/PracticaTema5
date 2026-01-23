@@ -1,6 +1,5 @@
 package Characters;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Mago extends Personaje {
@@ -59,40 +58,36 @@ public class Mago extends Personaje {
 
         System.out.println(coquetoM());
 
-        System.out.println("¿Qué tipo de conjuro quiere hacer? ⋆˙⟡ — " +
-                "\n\t1. Bola de fuego" +
-                "\n\t2. Escudo arcano" +
-                "\n\t3. Céfiro" +
-                "\n\t4. Presteza mental");
+        menusito("¿Qué tipo de conjuro quiere hacer?", new String[]{"Bola de fuego", "Escudo arcano", "Céfiro", "Presteza mental"}, 2);
         opcion = scan.nextInt();
 
         switch (opcion) {
             case 1:
                 dañoConjuro = mag * 0.70;
                 enemigo.setPv(enemigo.getPv() - (int)dañoConjuro);
-                System.out.println(getNombre() + " lanza Bola de fuego y hace " + dañoConjuro + " de daño a " + enemigo.getNombre() + " ⋆˙⟡ —");
+                System.out.println(getNombre() + " lanza Bola de fuego y hace " + dañoConjuro + " de daño a " + enemigo.getNombre() + ". Dejándole a " + enemigo.getPv() + " de vida.." + details(2));
                 break;
             case 2:
                 setArm(getArm() + (int)(mag * 0.5));
                 setRes(getRes() + (int)(mag * 0.5));
-                System.out.println(getNombre() + " activa Escudo Arcano: " + toString() + " ⋆˙⟡ —");
+                System.out.println(getNombre() + " activa Escudo Arcano: " + toString() + details(2));
                 break;
             case 3:
                 dañoConjuro = mag * 0.30;
                 enemigo.setPv(enemigo.getPv() - (int)dañoConjuro);
-                System.out.println("Un viento causa un 30% de sus puntos de magia como daño a todos los enemigos presentes.. ⋆˙⟡ —");
+                System.out.println("Un viento causa un 30% de sus puntos de magia como daño a todos los enemigos presentes.." + details(2));
                 break;
             case 4:
                  setVel(super.getVel() + mag);
-                System.out.println("La presteza mental de " + getNombre() + " le hace ganar velocidad.. ⋆˙⟡ —");
+                System.out.println("La presteza mental de " + getNombre() + " le hace ganar velocidad.." + details(2));
                 break;
         }
     }
 
     @Override
-    public void accEspesial(){
-        System.out.println("Acción especial: Lanzar conjuro..");
-        // lanzarConjuro();
+    public void accEspesial(Personaje enemigo) {
+        printPerezita("\uD835\uDC73\uD835\uDC82\uD835\uDC8F\uD835\uDC9B\uD835\uDC82\uD835\uDC93 \uD835\uDC84\uD835\uDC90\uD835\uDC8F\uD835\uDC8B\uD835\uDC96\uD835\uDC93\uD835\uDC90..");
+        lanzarConjuro(enemigo);
     }
 
     @Override
@@ -108,36 +103,18 @@ public class Mago extends Personaje {
     }
 
     public String coquetoM(){
-        return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡀⠀⡖⢉⢲⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣏⠰⠎⢀⣣⣈⣁⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠍⠟⠉⣩⠖⠉⠁⠀⠈⠙⠦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⣼⠃⠀⠀⠀⠀⠀⠀⠀⠘⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢨⢸⣏⠀⠀⠀⢠⣤⣤⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡄⠀⠀⠘⠂⣸⠇⠀⢀⡿⣀⠤⢀⠖⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠻⣦⣤⣤⡶⠋⠀⣠⣾⣿⡵⠦⢡⡬⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⣀⣤⣶⡲⡲⡤⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⢀⣴⣿⠋⡟⢧⠈⢂⡐⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⣠⠖⠉⠀⠀⠀⠈⠉⠪⢦⡙⢷⡄⠀⠀⢠⠜⠃⡠⠀⠀⣠⣾⠟⠁⠀⠈⠂⡆⠂⣀⣀⠀⠀⠀⠀⠀⠀\n" +
-                "⢀⡜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠺⡐⢍⢆⠀⠀⠇⠢⠆⢀⣴⡿⠋⡠⠔⠒⠦⡄⠀⠀⠜⠻⠁⠀⠀⠀⠀⠀\n" +
-                "⡜⠀⠀⠀⠀⠀⢀⣀⡀⠀⠀⠀⠀⠘⢮⢑⢆⠀⠀⠀⣴⡿⠋⠀⢰⠀⠠⢄⢀⠹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⡇⠀⠀⠀⢀⣾⡿⠛⠛⠷⣄⠀⠀⠀⠈⢮⡘⡄⠀⣼⢿⡇⠅⠀⠈⠳⠦⠊⡀⢰⠤⠶⢶⣦⡄⠀⠀⠀⠀⠀\n" +
-                "⢧⠀⠀⠀⠸⣿⠁⢀⠀⠀⠘⡆⠀⠀⢀⠈⢎⢇⣸⠃⠂⠹⣄⡁⠂⠠⠀⢂⠔⠁⢀⠤⠀⣿⣿⠀⠀⠀⠀⠀\n" +
-                "⠘⣆⠀⠀⠀⠈⠒⠚⠀⠀⠀⡇⠀⠘⠻⠀⠘⣿⡏⠈⣠⠤⢬⣝⠛⠛⠉⢁⡀⠀⠘⢶⣶⡿⠃⠀⠀⠀⠀⠀\n" +
-                "⠀⠘⣆⠀⠀⠀⠀⠀⠀⢀⡴⠁⢀⠀⠀⢀⠀⣿⣡⠎⢀⠔⣤⠈⡇⠀⢄⠈⠑⢐⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠈⠷⣄⣀⢀⣀⣠⠏⠀⠀⣄⠀⢌⠸⠀⣿⣿⠀⠈⠄⠡⠌⠀⠀⡈⣀⡀⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠉⠉⠉⠀⠀⠀⠄⡃⠩⡆⡁⠠⣿⣏⠀⠀⣠⠶⠶⡄⠀⠁⢀⣈⣃⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢗⠉⠉⠄⢸⡿⢻⡀⠀⢿⣄⠇⡹⢠⣶⡿⠛⠛⠻⢿⣦⡄⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠆⡈⣄⢴⠂⠃⠀⠀⠀⠠⣿⠰⠙⣦⠤⠤⠊⢰⣿⠃⠀⠀⣀⠀⠀⠘⢿⡄⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⢙⣻⡾⡛⠩⠉⠍⠙⡳⢦⡀⢻⡨⠁⠈⠳⡀⠀⢸⣿⡀⠀⢸⣋⠻⡄⠀⠘⡇⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⡴⢁⠁⠀⠀⠀⠀⠀⠀⠂⠙⢾⣇⠂⡎⣙⡟⡄⠀⢻⣧⠀⠀⠀⡰⠁⠀⢠⠇⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⡸⠡⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠹⣦⡱⢬⡤⠇⠀⠀⠉⠛⠒⠉⠀⠀⣠⠎⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⣏⡇⠀⠀⢀⡜⠉⠀⠀⠙⢆⠀⠀⠀⠹⣟⠢⣀⡀⠀⠀⠀⠀⢀⣀⡤⠞⠁⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠣⡹⡄⠀⠘⣄⠀⠈⡁⠀⢸⡆⠀⠀⠀⠙⣎⢃⠊⠋⢍⣸⣉⡉⠁⢤⣴⣀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠘⡂⢝⢦⣀⠈⠛⠈⠀⠀⡜⠀⣘⠂⢚⠀⠈⢧⡡⠠⠏⠱⣲⠙⡄⠉⠛⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠑⡡⡪⡫⡓⡦⠤⡄⠊⠀⠈⠁⢂⠊⠁⠀⠀⠹⣄⢇⡘⢶⣞⣁⣀⣤⣀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠑⠚⠒⠊⠁⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠈⠳⣌⠉⠁⢠⢒⣦⠀⢡⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠏⣤⣸⠇⠀⠀⠈⠣⡀⢹⣌⣁⣠⠎⡴⠚⠉⠑⢦⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣄⣀⣀⣀⣠⡴⢶⡶⠾⣦⡈⠉⠀⠸⣅⢠⡄⠀⢈⡆\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠀⢀⠊⣀⡂⡀⠈⠢⢄⡀⠈⠉⠀⣀⣾⠃\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⣃⡼⠀⠀⠈⠀⠉⠛⠲⠟⠋⠁⠀\n";
+        return "⠀⠀⠀⠀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⣸⠤⠖⠛⠉⠉⠉⠉⠉⠻⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⣠⠞⠋⡾⡀⠀⠀⠀⠀⠀⠀⠀⠀⢈⡧⢖⣒⣋⠙⢢⡀⠀⠀\n" +
+                "⠀⠀⠀⡼⢁⣄⣠⠇⠳⣤⠤⠀⠀⠀⠀⠀⣴⠟⢹⠀⠀⠀⠈⠙⢷⡀⠀\n" +
+                "⠀⠀⢸⡅⠀⠈⠳⡄⡞⠁⢀⠀⠀⠀⠀⡾⠁⠀⢸⠀⠀⠀⠀⠀⠀⣷⠀\n" +
+                "⠀⠀⠈⠳⣄⣀⣀⣿⠖⠋⠁⠀⠀⠀⠀⡇⠀⣠⠏⠀⠀⠀⠀⣀⣼⡝⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⡏⠀⠀⠀⠀⠀⠀⠀⠙⠋⠁⠀⠀⣀⠤⠊⣡⡟⠁⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠤⣤⣤⣒⠮⠭⠤⠒⠋⢁⣇⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡶⠛⠉⠁⠀⠀⠀⠀⠀⠀⢀⡤⣀⡞⠘⡄⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⣴⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣇⢠⠞⠙\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⢠⠻⡀⠀⠀⠒⠒⠲⣆⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⣇⠙⠦⣀⣀⡠⠜⡹⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠢⠤⠠⠆⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n";
     }
 }

@@ -66,8 +66,6 @@ public class Monstruo extends Personaje {
             setVel(getVel() + cantidad("vel"));
     }
 
-    /**todo cambiar despues pq esta puto mal pero me da pereza ponerlo bien ahora*/
-
     public int cantidad(String stat) {
         int cantidad = 1;
         Random r = new Random();
@@ -85,8 +83,6 @@ public class Monstruo extends Personaje {
                 if (stat.equalsIgnoreCase("pv"))
                     cantidad = r.nextInt(2, 4);
                 break;
-            default:
-                System.err.println("pene");
         }
 
         return cantidad;

@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 import GameMap.Trampa;
-import Misc.GameTest;
 
 public abstract class Personaje {
 
@@ -288,36 +287,34 @@ public abstract class Personaje {
      * todo maldision
      */
 
-    public void accEspesial(){
+    public void accEspesial(Personaje enemigo) {
         System.out.println("Acción especial no implementada.");
     }
 
-    public int realizarTurno() {
+    public int realizarTurno(Personaje enemigo) {
         //depue
         int opcion;
         int turno = 0;
 
+        System.out.println("\nIniciando turno .ᐟ.ᐟ \n\t⤷ Turno de: " + this.getNombre() + " ദ്ദി◝ ⩊ ◜.ᐟ\n");
+
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("¿Qué acción quiere realizar? " +
-                "\n\t1. Atacar" +
-                "\n\t2. Acción Especial" +
-                "\n\t3. Defender" +
-                "\n\t4. Pasar turno");
+        menusito("¿Qué acción quiere realizar?", new String[]{"Atacar", "Acción Especial", "Defender", "Pasar turno"}, 0);
         opcion = scan.nextInt();
 
         switch (opcion) {
             case 1:
-                System.out.println(nombre + " decide atacar.");
-                atacar();
+                System.out.println(this.getNombre() + " decide atacar a " + enemigo.getNombre());
+                enemigo.defender(this.atacar(), this.getTipoAtaque());
                 break;
             case 2:
-                accEspesial();
+                accEspesial(enemigo);
                 break;
             case 3:
-                System.out.println(nombre + " adopta una postura defensiva.");
                 setArm((getArm() / 10) * 2);
                 setRes((getRes() / 10) * 2);
+                System.out.println(nombre + " adopta una postura defensiva.. \nSus stats mejoran:\n\t" + getArm() + "\n\t" + getRes());
                 break;
             case 4:
                 System.out.println(nombre + " pasa el turno.");
@@ -341,12 +338,39 @@ public abstract class Personaje {
         return tipoAtaque;
     }
 
+    public void menusito(String mensaje, String[] opciones, int detail){
+        System.out.println(details(1) + "\n" + mensaje + details(detail));
+
+        for (int i = 0; i < opciones.length; i++) {
+            int index = i + 1;
+            System.out.println("\t" + index + "." + opciones[i]);
+        }
+
+        printDetallito();
+    }
+
     public  String coquetudo(){
         return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡤⠤⠤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡤⠤⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⠀⠀⢠⡤⣤⣤⡀⠀⠀⠀⠀⠀⢘⢇⠀⠀⠀⠘⠙⠢⣀⠀⠀⠀⠀⠀⢀⡖⠋⠁⠀⠀⠀⡼⠇⠀⠀⠀⠀⠀⢀⣤⣤⡦⡄⠀⠀⠀⠀\n" +
                 "⣴⢖⣄⠀⠸⣅⢀⣠⠇⠀⣴⢖⣄⠀⠾⠋⠁⠀⠀⠀⠀⠀⠹⣾⠏⠻⠋⢂⠟⠀⠀⠀⠀⠒⠀⠉⡗⠀⢰⣶⣦⠀⠘⢄⡀⣱⠟⠀⢠⣶⣦\n" +
                 "⠈⠛⠀⠀⠀⠈⠛⠁⠀⠀⠈⠛⠁⠀⠉⢲⠀⠀⠀⠀⠀⠀⣠⠟⢮⣄⡴⠛⣤⡀⠀⠀⠀⠀⠀⡞⠃⠀⠀⠛⠁⠀⠀⠀⠹⠋⠀⠀⠀⠙⠁\n" +
                 "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠤⡶⠋⠙⠁⠀⠀⠙⠁⠀⠈⠉⠙⢲⢴⠟⠙⠁⠀⠀\n";
+    }
+
+    public String details(int opcion){
+        if(opcion == 1){
+            return " ₊˚ ‿︵‿୨୧ · · ♡ · · ୨୧‿︵‿ ˚₊";
+        } else if (opcion == 2) {
+            return " ۶ৎ";
+        } else return "";
+    }
+
+    public void printDetallito(){
+        System.out.printf("› ");
+    }
+
+    public void printPerezita(String acc){
+        System.out.println("\t\t" + acc + "\n");
     }
 }
 

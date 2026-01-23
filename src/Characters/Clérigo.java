@@ -1,6 +1,5 @@
 package Characters;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Clérigo extends Creyente{
@@ -49,6 +48,7 @@ public class Clérigo extends Creyente{
                 "\n\t1. Sanación" +
                 "\n\t2. Rezo sagrado" +
                 "\n\t3. Cólera divina");
+        printDetallito();
         opcion = scan.nextInt();
 
         switch (opcion){
@@ -69,9 +69,9 @@ public class Clérigo extends Creyente{
     }
 
     @Override
-    public void accEspesial(){
-        System.out.println("Acción especial: Plegaria..");
-        // plegaria();
+    public void accEspesial(Personaje enemigo){
+        printPerezita("\uD835\uDC00\uD835\uDC1C\uD835\uDC1C\uD835\uDC22ó\uD835\uDC27 \uD835\uDC1E\uD835\uDC2C\uD835\uDC29\uD835\uDC1E\uD835\uDC1C\uD835\uDC22\uD835\uDC1A\uD835\uDC25: \uD835\uDC0F\uD835\uDC25\uD835\uDC1E\uD835\uDC20\uD835\uDC1A\uD835\uDC2B\uD835\uDC22\uD835\uDC1A..");
+        plegaria(enemigo);
     }
 
     @Override

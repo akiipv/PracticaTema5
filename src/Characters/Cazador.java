@@ -58,8 +58,13 @@ public class Cazador extends Personaje {
 
     @Override
     public int atacar() {
-        coquetoCM();
         return getAtq() + mascota.atacar();
+    }
+
+    @Override
+    public void ataqueCoquetudo(Personaje enemigo){
+        System.out.println(coquetoCM() + "\n" + this.getNombre() + " decide atacar a " + enemigo.getNombre() + ", y " + mascota.getNombre() + " se suma al ataque" + details(3));
+        enemigo.defender(this.atacar(), this.getTipoAtaque());
     }
 
     class Mascota extends Personaje {
@@ -113,7 +118,7 @@ public class Cazador extends Personaje {
 
         @Override
         public String toString() {
-            String resultado = "Cargando datos de la mascotita.. ૮ ․ ․ ྀིა " +
+            String resultado = "Cargando datos de la mascotita.." + details(3)  +
                     "\n\t· Nombre: " + getNombre() + "" +
                     "\n\t· Raza: " + getRaza() +
                     "\n\t· Vida: " + getPv() +

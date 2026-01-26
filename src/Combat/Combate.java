@@ -86,13 +86,13 @@ public class Combate {
         int ataques = 1;
         String tipo = ataca.getTipoAtaque();
 
-        if (ataca.getVel() >= recibe.getVel() * 2){
+        if (ataca.getVel() >= (recibe.getVel() * 2)){
             ataques++;
+            System.out.println(ataca.getNombre() + " es tan veloz que puede atacar doblemente.. ₍^ >ヮ<^₎ .ᐟ.ᐟ");
         }
 
         for (int i = 0; i < ataques; i++) {
-            ataca.atacar();
-            recibe.setPv(recibe.getPv() - recibe.defender(ataca.getAtq(), tipo));
+            recibe.setPv(recibe.getPv() - recibe.defender(ataca.atacar(), tipo));
         }
 
         trampita(ataca);

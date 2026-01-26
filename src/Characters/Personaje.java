@@ -9,12 +9,14 @@ public abstract class Personaje {
 
     private String nombre, tipoAtaque;
     private int pv, atq, arm, nivel, res, vel;
+    private boolean def;
 
     public Personaje() {
         atq = arm = nivel = vel = res = 10;
         pv = 100;
         nombre = "";
         tipoAtaque = "fisico";
+        def = false;
     }
 
     public Personaje(String nombre, int pv, int atq, int arm, int nivel, int vel, int res) {
@@ -25,6 +27,8 @@ public abstract class Personaje {
         setNivel(nivel);
         setVel(vel);
         setRes(res);
+        setTipoAtaque("fisico");
+        setDef(false);
     }
 
 
@@ -65,6 +69,7 @@ public abstract class Personaje {
         this.atq = copia.atq;
         this.arm = copia.arm;
         this.nivel = copia.nivel;
+        this.def = copia.def;
     }
 
     public int getRes() {
@@ -120,6 +125,10 @@ public abstract class Personaje {
         if (nivel < 1 || nivel > 100) {
             System.err.println("Error. El nivel debe estar entre 1 y 100.");
         } else this.nivel = nivel;
+    }
+
+    public void setDef(boolean def) {
+        this.def = def;
     }
 
     public String getNombre() {
@@ -190,7 +199,7 @@ public abstract class Personaje {
             setVel(getVel() + 1);
 
         setNivel(getNivel() + 1);
-        System.out.println(getNombre() + ", ¡ha subido de nivel!\n\t" + toString());
+        System.out.println(getNombre() + ", ¡ha subido de nivel!\n\n" + toString());
     }
 
     public boolean estaMuerto() {
@@ -261,7 +270,7 @@ public abstract class Personaje {
     }
 
     /**
-     * todo creo q está hacido pero miralo luego y corrígelo sorrita jejejejeje
+     * todo hacer otro metodo pq soy retrasada mental jejejejejejejejejej
      */
 
     public int defender(int dañoHecho, String tipoDaño) {
@@ -283,19 +292,35 @@ public abstract class Personaje {
         return dañoRecibido;
     }
 
+    public void defensaUppie(){
+        if (def){
+            setArm(getArm() + ((int) (getArm() * 0.2)));
+            setRes(getRes() + ((int) (getRes() * 0.2)));
+            System.out.println(getNombre() + " adopta una postura defensiva.. \nSus stats mejoran" + details(5) + ":\n\t· Armadura: " + getArm() + "\n\t· Resistencia: " + getRes());
+        }
+    }
+
+    public void defensaDown(){
+        if (!def){
+            setArm((int) (getArm() * 0.8));
+            setRes((int) (getRes() * 0.8));
+            System.out.println(getNombre() + " se relaja.. \nSus stats vuelven a la normalidad" + details(4) + ":\n\t· Armadura: " + getArm() + "\n\t· Resistencia: " + getRes());
+        }
+    }
+
     /**
      * todo maldision
      */
 
     public void accEspesial(Personaje enemigo) {
-        System.out.println("Acción especial no implementada.");
+        System.out.println("Acción especial no implementada.." + details(4));
     }
 
-    public int realizarTurno(Personaje enemigo) {
+    public void realizarTurno(Personaje enemigo) {
         int opcion;
-        int turno = 0;
+        this.setDef(false);
 
-        System.out.println("\nIniciando turno .ᐟ.ᐟ \n\t⤷ Turno de: " + this.getNombre() + " ദ്ദി◝ ⩊ ◜.ᐟ\n");
+        System.out.println("\nIniciando turno .ᐟ.ᐟ \n\t⤷ Turno de: " + this.getNombre() + details(5) + "\n");
 
         Scanner scan = new Scanner(System.in);
 
@@ -304,29 +329,27 @@ public abstract class Personaje {
 
         switch (opcion) {
             case 1:
-                System.out.println(this.getNombre() + " decide atacar a " + enemigo.getNombre());
-                enemigo.defender(this.atacar(), this.getTipoAtaque());
+                this.ataqueCoquetudo(enemigo);
                 break;
             case 2:
-                accEspesial(enemigo);
+                this.accEspesial(enemigo);
                 break;
             case 3:
-                setArm((int) (getArm() * 0.2));
-                setRes((int) (getRes() * 0.2));
-                System.out.println(nombre + " adopta una postura defensiva.. \nSus stats mejoran:\n\t· Armadura: " + getArm() + "\n\t· Resistencia: " + getRes());
+                if (def)
+                    this.defensaUppie();
                 break;
             case 4:
-                System.out.println(nombre + " pasa el turno.");
+                System.out.println(getNombre() + " decide pasar el turno." + details(4));
                 break;
             default:
                 System.out.println("Opción no válida.");
         }
 
-        turno++;
+    }
 
-        if (opcion == 3) { setArm((getArm() / 2) * 10); setRes((getRes() / 2) * 10); }
-
-        return opcion;
+    public void ataqueCoquetudo(Personaje enemigo){
+        System.out.println(this.getNombre() + " decide atacar a " + enemigo.getNombre());
+        enemigo.defender(this.atacar(), this.getTipoAtaque());
     }
 
     public void setTipoAtaque(String tipoAtaque) {
@@ -349,7 +372,7 @@ public abstract class Personaje {
     }
 
     public  String coquetudo(){
-        return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡤⠤⠤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡤⠤⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+        return "⠀⠀⠀⠀⠀⠀⠀⠀⡤⠤⠤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⣀⣠⡤⠤⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⠀⠀⢠⡤⣤⣤⡀⠀⠀⠀⠀⠀⢘⢇⠀⠀⠀⠘⠙⠢⣀⠀⠀⠀⠀⠀⢀⡖⠋⠁⠀⠀⠀⡼⠇⠀⠀⠀⠀⠀⢀⣤⣤⡦⡄⠀⠀⠀⠀\n" +
                 "⣴⢖⣄⠀⠸⣅⢀⣠⠇⠀⣴⢖⣄⠀⠾⠋⠁⠀⠀⠀⠀⠀⠹⣾⠏⠻⠋⢂⠟⠀⠀⠀⠀⠒⠀⠉⡗⠀⢰⣶⣦⠀⠘⢄⡀⣱⠟⠀⢠⣶⣦\n" +
                 "⠈⠛⠀⠀⠀⠈⠛⠁⠀⠀⠈⠛⠁⠀⠉⢲⠀⠀⠀⠀⠀⠀⣠⠟⢮⣄⡴⠛⣤⡀⠀⠀⠀⠀⠀⡞⠃⠀⠀⠛⠁⠀⠀⠀⠹⠋⠀⠀⠀⠙⠁\n" +
@@ -357,11 +380,21 @@ public abstract class Personaje {
     }
 
     public String details(int opcion){
-        if(opcion == 1){
-            return " ₊˚ ‿︵‿୨୧ · · ♡ · · ୨୧‿︵‿ ˚₊";
-        } else if (opcion == 2) {
-            return " ۶ৎ";
-        } else return "";
+
+        switch (opcion){
+            case 1:
+                return " ₊˚ ‿︵‿୨୧ · · ♡ · · ୨୧‿︵‿ ˚₊";
+            case 2:
+                return " ۶ৎ";
+            case 3:
+                return " ฅᨐฅ";
+            case 4:
+                return " ૮ ྀིᴗ͈ . ᴗ͈ ྀིა.ᐟ";
+            case 5:
+                return " ദ്ദി◝ ⩊ ◜.ᐟ";
+                default:
+                return "";
+        }
     }
 
     public void printDetallito(){

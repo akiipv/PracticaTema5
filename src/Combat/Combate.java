@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class Combate {
 
+    /**todo cambiar pq ya no queda aesthetic el round 1 y to esa paranoia*/
+
     public static void combatir(Personaje c1, Personaje c2) {
 
         // Ella jura 💜
@@ -92,12 +94,10 @@ public class Combate {
         }
 
         for (int i = 0; i < ataques; i++) {
-            recibe.setPv(recibe.getPv() - recibe.defender(ataca.atacar(), tipo));
+            ataca.realizarTurno(recibe);
         }
 
         trampita(ataca);
-
-        System.out.println(ataca.getNombre() + " golpea a " + recibe.getNombre() + " y causa " + recibe.defender(ataca.getAtq(), tipo) + " de daño.. dejándole a: " + recibe.getPv() + " puntos de vida.");
 
     }
 }

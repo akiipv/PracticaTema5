@@ -49,6 +49,8 @@ public class Mago extends Personaje {
         System.out.println(getNombre() + ", ¡ha subido de nivel!\n\t" + toString());
     }
 
+    /**todo cambiar pq no queda aesthetic*/
+
     public void lanzarConjuro(Personaje enemigo) {
 
         setTipoAtaque("magico");

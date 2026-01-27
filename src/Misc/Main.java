@@ -9,11 +9,9 @@ public class Main {
     public static void main(String[] args) {
         // Que luego dices que no pruebo lo que hago, hater 🥀
 
-        Personaje Isa = new Cazador("Isa", 2, 2, 2, 2, 2, 2, "canido", "ale");
-        Personaje Alejandro = new Ladrón("Alejandro", 2, 3, 4, 3, 2, 1);
+        Personaje Isa = new Cazador("Isa", 7, 15, 63, 2, 30, 21, "felino", "ale");
+        Personaje Alejandro = new Mago("Alejandro", 9, 23, 42, 36, 22, 23, 24);
 
-        Isa.realizarTurno(Alejandro);
-        /*Alejandro.realizarTurno(Isa);*/
-        Isa.subirNivel();
+        Combate.combatir(Isa, Alejandro);
     }
 }

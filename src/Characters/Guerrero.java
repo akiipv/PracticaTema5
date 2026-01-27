@@ -91,6 +91,7 @@ public class Guerrero extends Personaje {
                     dañoRecibido *= 2;
         }
 
+        this.setPv(this.getPv() - dañoRecibido);
         return dañoRecibido;
     }
 

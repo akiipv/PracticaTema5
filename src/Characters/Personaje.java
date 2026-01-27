@@ -158,7 +158,7 @@ public abstract class Personaje {
     public void beberPocion(int pocion) {
         if (pv <= 30) {
             pv += pocion;
-            System.out.println("El jugador: " + getNombre() + ", se ha bebido una poción.. su vida sube a: " + pv);
+            System.out.println("\n" + getNombre() + ", se ha bebido una poción.. su vida sube ahora es " + pv);
         }
     }
 
@@ -166,11 +166,11 @@ public abstract class Personaje {
         switch (tipo) {
             case "ataque":
                 atq += cantidad;
-                System.out.println("El jugador: " + getNombre() + ", se ha inspirado.. su ataque sube a: " + atq);
+                System.out.println("\n" + getNombre() + ", se ha inspirado.. su ataque sube ahora es " + atq);
                 break;
             case "defensa":
                 arm += cantidad;
-                System.out.println("El jugador: " + getNombre() + ", se ha inspirado.. su defensa sube a: " + arm);
+                System.out.println("\n" + getNombre() + ", se ha inspirado.. su defensa sube ahora es " + arm);
                 break;
             default:
                 System.err.println("Error. Introduzca ataque o defensa.");
@@ -289,7 +289,12 @@ public abstract class Personaje {
                     dañoRecibido = 0;
         }
 
+        this.setPv(this.getPv() - dañoRecibido);
         return dañoRecibido;
+    }
+
+    public void printPv(Personaje player){
+        System.out.println("\t·Su vida actual es de: " + player.getPv());
     }
 
     public void defensaUppie(){
@@ -308,13 +313,13 @@ public abstract class Personaje {
         }
     }
 
-    /**
-     * todo maldision
-     */
-
     public void accEspesial(Personaje enemigo) {
         System.out.println("Acción especial no implementada.." + details(4));
     }
+
+    /**
+     * todo pensaba q lo habia terminao, ella jura💜 m falta el defender, maldisionnnnnnnnnnnn
+     */
 
     public void realizarTurno(Personaje enemigo) {
         int opcion;
@@ -350,6 +355,7 @@ public abstract class Personaje {
     public void ataqueCoquetudo(Personaje enemigo){
         System.out.println(this.getNombre() + " decide atacar a " + enemigo.getNombre());
         enemigo.defender(this.atacar(), this.getTipoAtaque());
+        printPv(enemigo);
     }
 
     public void setTipoAtaque(String tipoAtaque) {
